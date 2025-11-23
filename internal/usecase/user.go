@@ -24,7 +24,7 @@ func NewUserService(userRepo repository.UserRepository) UserService {
 func (u *userService) GetByID(userid int) (*entity.User, error) {
 	user, err := u.userRepo.FindByID(userid)
 	if err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
+		if errors.Is(err, gorm.ErrRecordNotFound) { // TODO: use repository.ErrUserNotFound instead of gorm.ErrRecordNotFound
 			return nil, err
 		}
 
